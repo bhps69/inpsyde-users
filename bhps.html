@@ -1,0 +1,16 @@
+<html>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+  $("a").click(function(){
+    $.get("https://jsonplaceholder.typicode.com/user", function(data, status){
+      alert("Data: " + data + "\nStatus: " + status);
+    });
+  });
+});</script>
+</head>
+<body>
+<a href="" >Show Users</a>
+</body>
+</html>
