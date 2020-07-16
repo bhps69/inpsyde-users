@@ -1,0 +1,85 @@
+<html>
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link
+      rel="javascript"
+      href="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.19/lodash.core.min.js"
+    />
+    <script>
+      $(document).ready(function () {
+        $("button").click(function () {
+          $.getJSON("https://jsonplaceholder.typicode.com/users", function (
+            data,
+            status
+          ) {
+            //alert(data);
+            var dataObject = data;
+            var dataMap = new Map(Object.entries(dataObject));
+            var resultMap = new Map();
+            for (const key of dataMap.keys()) {
+              //alert(key);
+
+              //   console.log(key);
+              var keyMap = new Map(Object.entries(dataMap.get(key)));
+              resultMap.set(key, keyMap);
+            }
+            var row = document.createElement("tr");
+            $("#");
+            var count = 0;
+            for (const paramValue of resultMap.values()) {
+              for (let pakeys of paramValue.keys()) {
+                var papaValues = paramValue.get(pakeys);
+                count = count + 1;
+                if (pakeys == "address" || pakeys == "company") {
+                  //alert(pakeys + "5:" + JSON.stringify(papaValues));
+                  $("#" + pakeys + "Col").append(JSON.stringify(papaValues));
+                } else {
+                  //alert(pakeys + ":" + papaValues);
+                  $("#" + pakeys + "Col").append(papaValues);
+                }
+              }
+            }
+          });
+        });
+      });
+      function jsonToMap(jsonString) {}
+    </script>
+  </head>
+  <body>
+    <button>Show Users</button><br />
+    <div id="div1">
+      <h4>User List</h4>
+      <table border="1">
+        <thead>
+          <tr>
+            <th>
+              id
+            </th>
+            <th>
+              Name
+            </th>
+            <th>UserName</th>
+            <th>Email</th>
+            <th>Address</th>
+            <th>Phone</th>
+            <th>Website</th>
+            <th>Company</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td id="idCol"></td>
+            <td id="nameCol"></td>
+            <td id="userNameCol"></td>
+            <td id="emailCol"></td>
+            <td id="addressCol"></td>
+            <td id="phoneCol"></td>
+            <td id="websiteCol"></td>
+            <td id="companyCol"></td>
+          </tr>
+        </tbody>
+      </table>
+      <br />
+    </div>
+  </body>
+</html>
